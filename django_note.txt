@@ -16,8 +16,8 @@ views.py: 圖片邏輯文件 將數據調用模板渲染到瀏覽器上
 python manage.py help 查看指令
 python manage.py migrate 建立sqlite內的文件
 再透過 python manage.py createsuperuser
-帳號:ecco
-密碼:ecco
+帳號:
+密碼:
 電子郵件信箱:ecco272727@gmail.com
 (密碼儲存在sqlite檔案auth_user資料表內 密碼已經經過加密 sha256)
 建立並且設定完成後可以透過下方網址查看登入頁面
