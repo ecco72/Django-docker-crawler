@@ -1,0 +1,31 @@
+django-admin startproject agoda 建立項目管理資料夾
+python manage.py startapp crawler   使用manage.py 建立一個app
+python manage.py runserver 執行django
+
+項目管理資料夾內:
+asgi和wsgi差別
+asgi: 使用wsgi開發的文件 異步服務器管理接口 多了websocket
+wsgi: web服務器管理接口
+settings.py: 項目設定文件 設定資料夾路徑
+urls.py: route設定文件 設定網頁路徑
+
+app資料夾內:
+models.py: 數據庫模型文件
+views.py: 圖片邏輯文件 將數據調用模板渲染到瀏覽器上
+
+python manage.py help 查看指令
+python manage.py migrate 建立sqlite內的文件
+再透過 python manage.py createsuperuser
+帳號:ecco
+密碼:ecco
+電子郵件信箱:ecco272727@gmail.com
+(密碼儲存在sqlite檔案auth_user資料表內 密碼已經經過加密 sha256)
+建立並且設定完成後可以透過下方網址查看登入頁面
+http://127.0.0.1:8000/admin/
+
+
+settings 內的templates 和 statics要改、建立app後也要新增在檔案內
+
+表格的action路徑要對、後面還要加上{% csrf_token %}否則無法收到POST的內容
+
+django 的 views.py和urls.py關聯性要注意
