@@ -16,7 +16,9 @@ from .models import AgodaData
 from django.db import connection
 from django.db.models import Avg, Count, Min, Max
 from .serializers import AgodaDataSerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
+import requests
+from .filters import AgodaDataFilter
 
   
 # 搜尋頁面(首頁)透過表格POST資料出去 HTML內的action="/POST_crawl/" 決定了POST到哪個網址
@@ -160,12 +162,18 @@ def POST_crawl(request):
 
         return render(request,'search_form.html')   #首頁 form.html為搜尋頁面表單
 
+# 這個作用是透過序列器AgodaDataSerializer以及過濾器AgodaDataFilter透過API回傳json格式資料
+class AgodaDataListAPIView(generics.ListAPIView):
+    queryset = AgodaData.objects.all()
+    serializer_class = AgodaDataSerializer
+    filterset_class = AgodaDataFilter
+
 # 此為搜尋頁面的主程式，將p(飯店名稱)、area(飯店區域)、最高最低價格帶入，透過Django ORM(Object-Relational Mapping)查詢資料庫並返回資料的集合(queryset)
 def hotels(request):
         if request.method == "GET":
             p = request.GET.get('p',' ')    #預設空白
             area = request.GET.get('area',' ')
-
+            
             if request.GET.get('startp') == '':
                 startp = 0
             else:
@@ -175,15 +183,13 @@ def hotels(request):
                 endp = 50000
             else:
                 endp = int(request.GET.get('endp'))
-                
-            if p == '' and area == '':
-                queryset = AgodaData.objects.filter(price__gte=startp, price__lte=endp).order_by('price').values('title', 'price', 'link_url', 'photo_url', 'loc', 'rate')
-            elif area == '':
-                queryset = AgodaData.objects.filter(price__gte=startp, price__lte=endp, title__contains=p).order_by('price').values('title', 'price', 'link_url', 'photo_url', 'loc', 'rate')
-            elif p == '':
-                queryset = AgodaData.objects.filter(price__gte=startp, price__lte=endp, loc__contains=area).order_by('price').values('title', 'price', 'link_url', 'photo_url', 'loc', 'rate')
+            
+            api_url = f"http://127.0.0.1:8000/api/v1/?title={p}&loc={area}&price_min={startp}&price_max={endp}"
+            response = requests.get(api_url)
+            if response.status_code == 200:
+                queryset = response.json()
             else:
-                queryset = AgodaData.objects.filter(price__gte=startp, price__lte=endp, title__contains=p, loc__contains=area).order_by('price').values('title', 'price', 'link_url', 'photo_url', 'loc', 'rate')
+                queryset = []
 
             return render(request, 'hotels.html', {'result': queryset})
 
@@ -305,3 +311,4 @@ def recommendation(request):
 class AgodaViewSet(viewsets.ModelViewSet):
     queryset = AgodaData.objects.all()
     serializer_class = AgodaDataSerializer
+

@@ -13,6 +13,6 @@ class AgodaData(models.Model):
 #使用Meta更改資料表名稱、排序方法、後臺顯示的資料庫資料表名稱
     class Meta:
         db_table = "all_rooms_data"
-        ordering = ['-price']
+        ordering = ['price']
         verbose_name = "訂房網站資料"
         verbose_name_plural = "訂房網站資料集"  

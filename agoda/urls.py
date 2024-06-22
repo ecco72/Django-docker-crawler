@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,re_path, include
-from crawler.views import form, POST_crawl, hotels, getCSV, draw_plot, plot, recommendation
+from crawler.views import form, POST_crawl, hotels, getCSV, draw_plot, plot, recommendation, AgodaDataListAPIView
 from rest_framework.routers import DefaultRouter
 from crawler import views
 
@@ -54,7 +54,8 @@ urlpatterns = [
     path('recommendation/', recommendation),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),  # swagger
+    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),  # swagger
+    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),  # swagger
+    path('api/v1/', AgodaDataListAPIView.as_view(), name='agoda-data-list'),  # API回應
 ]
