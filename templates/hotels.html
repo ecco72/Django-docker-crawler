@@ -13,27 +13,29 @@
 			<a class="download" href="/getCSV/">下載csv</a>
 			<a class="download" href="/plot/">空房數量與價格分析</a>
 			<a class="download" href="/recommendation/">精選</a>
+      <a class="download" href="/api/Agoda/">DRF API</a>
+      <a class="download" href="/swagger/">Swagger API</a>
 		</div>
 		<nav class="header-navigation">
 			<a href="http://127.0.0.1:8000/" target="__blank">回首頁</a>
 		</nav>
 	</div>
 </header>
+  
 
-
-{% for row in result %}   
+{% for hotel in result %}   
   <div class="container page-wrapper">
     <div class="page-inner">
       <div class="row">
-        <div class="el-wrapper" href="{{row.2}}" target="__blank">
+        <div class="el-wrapper" href="{{hotel.link_url}}" target="__blank">
           <div class="box-up">
-            <img class="img" src="{{row.3}}" alt="">
+            <img class="img" src="{{hotel.photo_url}}" alt="">
             <div class="img-info">
               <div class="info-inner">
-                <span class="p-name">{{row.0}}</span>
-                <span class="p-company">區域:{{row.4}}</span>
+                <span class="p-name">{{hotel.title}}</span>
+                <span class="p-company">區域:{{hotel.loc}}</span>
               </div>
-              <div class="a-size">星級 : <span class="size">{{row.5}}</span></div>
+              <div class="a-size">星級 : <span class="size">{{hotel.rate}}</span></div>
             </div>
           </div>
 
@@ -42,8 +44,8 @@
               <div class="h-bg-inner"></div>
             </div>
 
-            <a class="cart" href="{{row.2}}" target="__blank">
-              <span class="price">${{row.1}}</span>
+            <a class="cart" href="{{hotel.link_url}}" target="__blank">
+              <span class="price">${{hotel.price}}</span>
               <span class="add-to-cart">
                 <span class="txt">訂房</span>
               </span>

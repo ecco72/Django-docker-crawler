@@ -12,9 +12,11 @@
 			<a class="download" href="/getCSV">下載csv</a>
 			<a class="download" href="/plot">空房數量與價格分析圖</a>
 			<a class="download" href="/recommendation">精選</a>
+      <a class="download" href="/api/Agoda/">DRF Api</a>
+      <a class="download" href="/swagger/">Swagger API</a>
 		</div>
 		<nav class="header-navigation">
-			<a href="http://127.0.0.1:5000/" target="__blank">回首頁</a>
+			<a href="http://127.0.0.1:8000/" target="__blank">回首頁</a>
 		</nav>
 	</div>
 </header>
@@ -24,15 +26,15 @@
   <div class="container page-wrapper">
     <div class="page-inner">
       <div class="row">
-        <div class="el-wrapper" href="{{row.2}}" target="__blank">
+        <div class="el-wrapper" href="{{row.link_url}}" target="__blank">
           <div class="box-up">
-            <img class="img" src="{{row.3}}" alt="">
+            <img class="img" src="{{row.photo_url}}" alt="">
             <div class="img-info">
               <div class="info-inner">
-                <span class="p-name">{{row.0}}</span>
-                <span class="p-company">區域:{{row.4}}</span>
+                <span class="p-name">{{row.title}}</span>
+                <span class="p-company">區域:{{row.loc}}</span>
               </div>
-              <div class="a-size">星級 : <span class="size">{{row.5}}</span></div>
+              <div class="a-size">星級 : <span class="size">{{row.rate}}</span></div>
             </div>
           </div>
 
@@ -41,8 +43,8 @@
               <div class="h-bg-inner"></div>
             </div>
 
-            <a class="cart" href="{{row.2}}" target="__blank">
-              <span class="price">${{row.1}}</span>
+            <a class="cart" href="{{row.link_url}}" target="__blank">
+              <span class="price">${{row.price}}</span>
               <span class="add-to-cart">
                 <span class="txt">訂房</span>
               </span>
@@ -59,15 +61,15 @@
   <div class="container page-wrapper">
     <div class="page-inner">
       <div class="row">
-        <div class="el-wrapper" href="{{row.2}}" target="__blank">
+        <div class="el-wrapper" href="{{row.link_url}}" target="__blank">
           <div class="box-up">
-            <img class="img" src="{{row.3}}" alt="">
+            <img class="img" src="{{row.photo_url}}" alt="">
             <div class="img-info">
               <div class="info-inner">
-                <span class="p-name">{{row.0}}</span>
-                <span class="p-company">區域:{{row.4}}</span>
+                <span class="p-name">{{row.title}}</span>
+                <span class="p-company">區域:{{row.loc}}</span>
               </div>
-              <div class="a-size">星級 : <span class="size">{{row.5}}</span></div>
+              <div class="a-size">星級 : <span class="size">{{row.rate}}</span></div>
             </div>
           </div>
 
@@ -76,8 +78,8 @@
               <div class="h-bg-inner"></div>
             </div>
 
-            <a class="cart" href="{{row.2}}" target="__blank">
-              <span class="price">${{row.1}}</span>
+            <a class="cart" href="{{row.link_url}}" target="__blank">
+              <span class="price">${{row.price}}</span>
               <span class="add-to-cart">
                 <span class="txt">訂房</span>
               </span>
@@ -94,15 +96,15 @@
   <div class="container page-wrapper">
     <div class="page-inner">
       <div class="row">
-        <div class="el-wrapper" href="{{row.2}}" target="__blank">
+        <div class="el-wrapper" href="{{row.link_url}}" target="__blank">
           <div class="box-up">
-            <img class="img" src="{{row.3}}" alt="">
+            <img class="img" src="{{row.photo_url}}" alt="">
             <div class="img-info">
               <div class="info-inner">
-                <span class="p-name">{{row.0}}</span>
-                <span class="p-company">區域:{{row.4}}</span>
+                <span class="p-name">{{row.title}}</span>
+                <span class="p-company">區域:{{row.loc}}</span>
               </div>
-              <div class="a-size">星級 : <span class="size">{{row.5}}</span></div>
+              <div class="a-size">星級 : <span class="size">{{row.rate}}</span></div>
             </div>
           </div>
 
@@ -111,8 +113,8 @@
               <div class="h-bg-inner"></div>
             </div>
 
-            <a class="cart" href="{{row.2}}" target="__blank">
-              <span class="price">${{row.1}}</span>
+            <a class="cart" href="{{row.link_url}}" target="__blank">
+              <span class="price">${{row.min_price}}</span>
               <span class="add-to-cart">
                 <span class="txt">訂房</span>
               </span>
@@ -129,15 +131,15 @@
   <div class="container page-wrapper">
     <div class="page-inner">
       <div class="row">
-        <div class="el-wrapper" href="{{row.2}}" target="__blank">
+        <div class="el-wrapper" href="{{row.link_url}}" target="__blank">
           <div class="box-up">
-            <img class="img" src="{{row.3}}" alt="">
+            <img class="img" src="{{row.photo_url}}" alt="">
             <div class="img-info">
               <div class="info-inner">
-                <span class="p-name">{{row.0}}</span>
-                <span class="p-company">區域:{{row.4}}</span>
+                <span class="p-name">{{row.title}}</span>
+                <span class="p-company">區域:{{row.loc}}</span>
               </div>
-              <div class="a-size">星級 : <span class="size">{{row.5}}</span></div>
+              <div class="a-size">星級 : <span class="size">{{row.rate}}</span></div>
             </div>
           </div>
 
@@ -146,8 +148,8 @@
               <div class="h-bg-inner"></div>
             </div>
 
-            <a class="cart" href="{{row.2}}" target="__blank">
-              <span class="price">${{row.1}}</span>
+            <a class="cart" href="{{row.link_url}}" target="__blank">
+              <span class="price">${{row.max_price}}</span>
               <span class="add-to-cart">
                 <span class="txt">訂房</span>
               </span>

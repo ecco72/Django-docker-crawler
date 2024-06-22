@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-
+# 記得加入自己新增的APP 還有Django REST Framework的APP、swagger(drf_yasg)
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -39,8 +39,19 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "crawler"
+    "crawler",
+    "rest_framework",
+    "drf_yasg"
 ]
+
+# 這邊是設定只有在新增了superuser後 只有管理員權限的人員才可以在登入後進行完整的CRUD，未登入人員只能進行GET
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -54,6 +65,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "agoda.urls"
 
+# 此為設定TEMPLATES的路徑
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -105,6 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
+# 更改後台的語言和時間
 
 LANGUAGE_CODE = "zh-Hant"
 
@@ -118,6 +131,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+#設定STATIC的資料夾路徑 (CSS)
 STATIC_URL = "static/"
 #根目錄新增
 STATIC_ROOT =   os.path.join(BASE_DIR,'static')
