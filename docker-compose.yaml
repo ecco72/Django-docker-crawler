@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  agoda:
+    build: .
+    image: agoda:latest
+    hostname: agoda
+    privileged: true
+    restart: always
+    volumes:
+      - ./src:/root
+    ports:
+      - 18888:8888
+    entrypoint:
+      - sh
+      - -c
+      - '/root/run.sh'
